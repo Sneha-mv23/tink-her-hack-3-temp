@@ -1,18 +1,38 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Track Period</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Period | Period Tracker</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/track_period.css' %}">
 </head>
 <body>
-    <h1>Track Your Period</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <label>Start Date:</label>
-        <input type="date" name="start_date" required>
-        <label>Cycle Duration (days):</label>
-        <input type="number" name="duration" required>
-        <button type="submit">Save</button>
-    </form>
-    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+    <div class="track-container">
+        <h1>Track Your Period</h1>
+
+        <!-- Profile Section -->
+        <section>
+            <h2>Profile</h2>
+            <p>View and update your profile details.</p>
+            <button>Go to Profile</button>
+        </section>
+
+        <!-- Track Period Section -->
+        <section>
+            <h2>Track Period</h2>
+            <p>Log your period dates and symptoms.</p>
+            <button>Track Now</button>
+        </section>
+
+        <!-- Health Insights Section -->
+        <section>
+            <h2>Health Insights</h2>
+            <p>Get predictions and insights based on your cycle.</p>
+            <button>View Insights</button>
+        </section>
+    </div>
 </body>
 </html>
+

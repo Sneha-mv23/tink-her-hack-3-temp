@@ -7,7 +7,7 @@ class PeriodTracker(models.Model):
     start_date = models.DateField()
     duration = models.IntegerField(help_text="Cycle duration in days")  # Example: 28 days
     next_period_date = models.DateField(blank=True, null=True)
-    reminder_sent = models.BooleanField(default=False)
+    
     
     def save(self, *args, **kwargs):
         """Auto-calculate next period date before saving."""
@@ -17,6 +17,11 @@ class PeriodTracker(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.start_date}"
+
+    class Meta:
+        indexes = [  # ✅ Updated index method for Django 4.2+
+            models.Index(fields=['user', 'next_period_date']),
+        ]
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

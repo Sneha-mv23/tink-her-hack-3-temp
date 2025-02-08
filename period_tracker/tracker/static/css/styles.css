@@ -1,3 +1,85 @@
+/* General Styling */
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffb6c1; /* Light Rose */
     font-family: Arial, sans-serif;
+    flex-direction: column;
+    text-align: center;
+    animation: bgAnimation 5s infinite alternate ease-in-out;
+}
+
+/* Heading Animation */
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff; /* White for contrast */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards;
+}
+
+.highlight {
+    color: #6f42c1; /* Purple for contrast */
+}
+
+/* Button Styling */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.button-container button {
+    background-color: #d63384; /* Dark pink */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    animation: bounce 1.5s infinite alternate ease-in-out;
+}
+
+.button-container button:hover {
+    background-color: #a12463; /* Slightly darker pink */
+    transform: scale(1.1);
+}
+
+/* Keyframe Animations */
+
+/* Fade-in Effect for Heading */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button Bounce Effect */
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-5px);
+    }
+}
+
+/* Soft Background Animation */
+@keyframes bgAnimation {
+    from {
+        background-color: #ffb6c1;
+    }
+    to {
+        background-color: #ff91a4;
+    }
 }

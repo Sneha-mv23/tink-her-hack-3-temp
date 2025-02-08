@@ -1,8 +1,24 @@
-<h1>Welcome to Period Tracker</h1>
-<a href="{% url 'signup' %}">
-    <button>Sign Up</button>
-</a>
-<a href="{% url 'login' %}">
-    <button>Login</button>
-</a>
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Period Tracker</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <h1>Welcome to <br> <span class="highlight">LADYCYCLE</span></h1>
+    <div class="button-container">
+        <a href="{% url 'signup' %}">
+            <button>Sign Up</button>
+        </a>
+        <a href="{% url 'login' %}">
+            <button>Login</button>
+        </a>
+    </div>
+</body>
+</html>

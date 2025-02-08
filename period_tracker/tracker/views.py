@@ -9,15 +9,17 @@ from datetime import datetime, timedelta
 
 # Home Page
 def home(request):
+
     return render(request, 'home.html')
 
 # User Signup
 def signup(request):
     if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        email = request.POST['email']
-        
+        print(request.POST)
+        username = request.POST.get('username','')
+        password = request.POST.get('password','')
+        email = request.POST.get('email')
+
         # Check if username is taken
         if User.objects.filter(username=username).exists():
             messages.error(request, "Username already taken. Choose a different one.")
