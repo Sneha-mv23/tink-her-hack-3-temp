@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}</h1>
+    
+    <a href="{% url 'track_period' %}">Track Period</a>
+    <br>
+    <a href="{% url 'logout' %}">Logout</a>
+    <br>
+    <a href="{% url 'profile' %}">Profile</a>
+
+    
+    <h2>Your Tracked Periods:</h2>
+    <ul>
+        {% for period in periods %}
+            <li>Start Date: {{ period.start_date }} | Next Period: {{ period.next_period_date }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
