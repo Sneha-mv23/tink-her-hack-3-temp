@@ -5,21 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 </head>
 <body>
     <div class="container">
-        <h2>Update Your Profile</h2>
+        <!-- Left Section: Profile Form -->
+        <div class="profile-section">
+            <h2>Update Your Profile</h2>
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Save Changes</button>
+            </form>
 
-            <button type="submit">Save Changes</button>
-        </form>
+            <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+        </div>
+
+        <!-- Right Section: BMI Calculator -->
+        <div class="bmi-section">
+            <h2>BMI Calculator</h2>
+            <form id="bmi-form">
+                <input type="number" id="weight" placeholder="Enter your weight (kg)" required>
+                <input type="number" id="height" placeholder="Enter your height (cm)" required>
+                <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+            </form>
+
+            <div id="bmi-result" style="display: none;">
+                <h3>Your BMI:</h3>
+                <p id="bmi-value"></p>
+                <p id="bmi-category"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            var weight = document.getElementById("weight").value;
+            var height = document.getElementById("height").value;
+
+            if (weight && height) {
+                height = height / 100; // Convert height to meters
+                var bmi = weight / (height * height); // BMI formula
+
+                document.getElementById("bmi-value").innerText = bmi.toFixed(2);
+                var category = '';
+
+                // Categorize the BMI
+                if (bmi < 18.5) category = 'Underweight';
+                else if (bmi >= 18.5 && bmi < 24.9) category = 'Normal weight';
+                else if (bmi >= 25 && bmi < 29.9) category = 'Overweight';
+                else category = 'Obese';
+
+                document.getElementById("bmi-category").innerText = category;
+                document.getElementById("bmi-result").style.display = 'block';
+            } else {
+                alert('Please fill in both fields!');
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+        
 
         <a href="{% url 'dashboard' %}">Back to Dashboard</a>
     </div>
 </body>
 </html>
+

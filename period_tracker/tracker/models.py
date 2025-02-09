@@ -9,6 +9,8 @@ class PeriodTracker(models.Model):
     next_period_date = models.DateField(blank=True, null=True)
     
     
+    
+
     def save(self, *args, **kwargs):
         """Auto-calculate next period date before saving."""
         if self.start_date and self.duration:
@@ -38,3 +40,12 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"Profile of {self.user.username}"
+
+class PeriodLog(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField()  # Date of last period
+    cycle_length = models.IntegerField(default=28)  # Default cycle length
+    next_period_date = models.DateField()  # Calculated next period date
+
+    def __str__(self):
+        return f"{self.user.username} - {self.date}"

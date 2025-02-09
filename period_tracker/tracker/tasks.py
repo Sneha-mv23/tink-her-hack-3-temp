@@ -2,6 +2,10 @@ from django.utils.timezone import now
 from django.core.mail import send_mail
 from .models import PeriodTracker
 
+from django.utils.timezone import now
+from django.core.mail import send_mail
+from .models import PeriodTracker
+
 def send_period_reminders():
     today = now().date()
     upcoming_periods = PeriodTracker.objects.filter(

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Periods</title>
+    <link rel="stylesheet" href="{% static 'css/track_period.css' %}?v=1">
+</head>
+<body>
+    <div class="container">
+        <h1>Logged Periods</h1>
+
+        <ul>
+            {% for period in periods %}
+                <li>Start Date: {{ period.date }} | Next Period: {{ period.next_period_date }}</li>
+            {% empty %}
+                <li>No periods logged yet.</li>
+            {% endfor %}
+        </ul>
+
+        <br>
+        <a href="{% url 'log_period' %}" class="btn">Log a New Period</a>
+        <a href="{% url 'dashboard' %}" class="btn">Back to Dashboard</a>
+    </div>
+</body>
+</html>

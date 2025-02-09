@@ -1,55 +1,56 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout  # Make sure authenticate and login are imported
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from .models import PeriodTracker, UserProfile
-from .forms import UserProfileForm
 from datetime import datetime, timedelta
+from .models import PeriodLog, UserProfile
+from .forms import UserProfileForm  
 
 # Home Page
 def home(request):
-
     return render(request, 'home.html')
 
 # User Signup
 def signup(request):
     if request.method == "POST":
-        print(request.POST)
-        username = request.POST.get('username','')
-        password = request.POST.get('password','')
-        email = request.POST.get('email')
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '').strip()
+        email = request.POST.get('email', '').strip()
 
-        # Check if username is taken
+        # Validate input
+        if not username or not password or not email:
+            messages.error(request, "All fields are required.")
+            return redirect('signup')
+
+        # Check if username exists
         if User.objects.filter(username=username).exists():
             messages.error(request, "Username already taken. Choose a different one.")
             return redirect('signup')
 
-        # Create new user and login
-        user = User.objects.create_user(username=username, password=password)
+        # Create user
+        user = User.objects.create_user(username=username, email=email, password=password)
         user.save()
-        login(request, user)
 
-        # Create user profile automatically
+        # Create user profile
         UserProfile.objects.create(user=user)
 
-        messages.success(request, "Signup successful! Profile created.")
-        return redirect('dashboard')
+        messages.success(request, "Signup successful! You can now log in.")
+        return redirect('login')
 
     return render(request, 'signup.html')
 
 # User Login
 def user_login(request):
     if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '').strip()
 
-        if user is not None:
+        user = authenticate(request, username=username, password=password)
+        if user:
             login(request, user)
             return redirect('dashboard')
         else:
-            messages.error(request, "Invalid credentials. Try again.")
+            messages.error(request, "Invalid username or password.")
 
     return render(request, 'login.html')
 
@@ -62,35 +63,68 @@ def user_logout(request):
 # Dashboard
 @login_required
 def dashboard(request):
-    periods = PeriodTracker.objects.filter(user=request.user).order_by('-start_date')
+    periods = PeriodLog.objects.filter(user=request.user).order_by('-date')
     return render(request, 'dashboard.html', {'periods': periods})
 
 # Track Period
 @login_required
 def track_period(request):
     if request.method == "POST":
-        start_date_str = request.POST['start_date']
-        duration = int(request.POST['duration'])
+        start_date_str = request.POST.get('start_date', '')
+        cycle_length = request.POST.get('cycle_length', '28').strip()  # Default 28 days
 
-        # Convert start_date string to date object
-        start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
+        try:
+            start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
+            cycle_length = int(cycle_length)
+            
+            # Call log_period to handle the period logging logic
+            log_period(request.user, start_date, cycle_length)
 
-        # Calculate next period date
-        next_period_date = start_date + timedelta(days=duration)
+            messages.success(request, "Period logged successfully!")
+            return redirect('dashboard')
 
-        PeriodTracker.objects.create(
-            user=request.user,
-            start_date=start_date,
-            duration=duration,
-            next_period_date=next_period_date
-        )
-
-        messages.success(request, "Period tracked successfully!")
-        return redirect('dashboard')
+        except ValueError:
+            messages.error(request, "Invalid date format. Please enter a valid date.")
+            return redirect('track_period')
 
     return render(request, 'track_period.html')
 
-# User Profile
+# Log Period - Separate function
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import PeriodLog
+from datetime import datetime, timedelta
+
+def log_period(request):
+    if request.method == "POST":
+        start_date_str = request.POST.get('start_date', '')
+        cycle_length = request.POST.get('cycle_length', '28')  # Default to 28 if not provided
+
+        try:
+            start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
+            cycle_length = int(cycle_length)
+            next_period_date = start_date + timedelta(days=cycle_length)
+
+            # Create or update period log for the user
+            log_period, created = PeriodLog.objects.update_or_create(
+                user=request.user,
+                date=start_date,
+                defaults={'cycle_length': cycle_length, 'next_period_date': next_period_date}
+            )
+
+            return redirect('new')  # Redirect to dashboard after saving the period
+        except ValueError:
+            messages.error(request, "Invalid date format. Please enter a valid date.")
+            return redirect('log_period')
+
+    # If GET request, show the form for entering period details
+    return render(request, 'log.html')
+
+def new(request):
+    # Get all periods for the logged-in user
+    periods = PeriodLog.objects.filter(user=request.user).order_by('-date')
+    return render(request, 'new.html', {'periods': periods})
+    
 @login_required
 def profile(request):
     profile, created = UserProfile.objects.get_or_create(user=request.user)
@@ -107,7 +141,7 @@ def profile(request):
 
     return render(request, 'profile.html', {'form': form})
 
-
-
-
-
+# Settings View
+def settings_view(request):
+    # Your logic for the settings page
+    return render(request, 'settings.html')

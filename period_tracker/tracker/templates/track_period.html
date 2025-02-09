@@ -1,38 +1,50 @@
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track Period | Period Tracker</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/track_period.css' %}">
+    <title>Track Period</title>
+    <link rel="stylesheet" href="{% static 'css/track_period.css' %}?v=1">
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the remaining days from the passed variable
+            var remainingDays = parseInt("{{ remaining_days|default:0 }}", 10);
+
+            if (remainingDays > 0) {
+                // Display an alert if there are remaining days
+                alert("Your next period is in " + remainingDays + " days.");
+            }
+        });
+    </script>
 </head>
 <body>
-    <div class="track-container">
-        <h1>Track Your Period</h1>
+    <div class="container">
+        <h1>WELCOME {{user.username}}</h1>
 
         <!-- Profile Section -->
-        <section>
-            <h2>Profile</h2>
-            <p>View and update your profile details.</p>
-            <button>Go to Profile</button>
-        </section>
+        <div class="section">
+            <h2>👤 Calculate BMI</h2>
+            <p>Calculate BMI, view and update your profile details.</p>
+            <a href="{% url 'profile' %}" class="btn">Go to Profile</a>
+        </div>
 
         <!-- Track Period Section -->
-        <section>
-            <h2>Track Period</h2>
-            <p>Log your period dates and symptoms.</p>
-            <button>Track Now</button>
-        </section>
+        <div class="section">
+            <h2>📅 Track Your Period</h2>
+            <p>Log your period dates to get accurate predictions.</p>
+            <a href="{% url 'log_period' %}" class="btn">Track Now</a>
+        </div>
 
-        <!-- Health Insights Section -->
-        <section>
-            <h2>Health Insights</h2>
-            <p>Get predictions and insights based on your cycle.</p>
-            <button>View Insights</button>
-        </section>
+        <!-- Settings Section -->
+        <div class="section">
+            <h2>⚙️ Settings</h2>
+            <p>Manage your preferences and notifications.</p>
+            <a href="{% url 'settings' %}" class="btn">Go to Settings</a>
+        </div>
     </div>
 </body>
 </html>
+
 

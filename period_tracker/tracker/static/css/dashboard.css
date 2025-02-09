@@ -1,0 +1,60 @@
+/* dashboard.css */
+
+/* Universal styles for the whole page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Ensure the body takes full height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+}
+
+/* Container for the content */
+.container {
+    max-width: 900px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it scales based on screen size */
+    max-width: 600px; /* Set a max width for larger screens */
+    text-align: center; /* Center text */
+}
+
+/* Styling for the image */
+.dashboard-image {
+    width: 100%; /* Make the image take full width of the container */
+    max-width: 300px; /* Set a maximum width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space below the image */
+}
+
+/* Welcome text styles */
+.welcome {
+    font-size: 36px;
+    color: pink;
+    margin-bottom: 40px; /* Space below the welcome text */
+}
+
+/* Button styles */
+a.btn {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+a.btn:hover {
+    background-color: #45a049;
+}
+
