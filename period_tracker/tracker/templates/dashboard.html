@@ -8,12 +8,15 @@
 <body>
     <div class="container">
         <!-- Insert an image above the welcome text -->
-        <img src="IMG_9128.PNG">
+        <img src="{% static 'image/IMG_9128.PNG' %}" alt="Welcome Image" class="welcome-image">
+
         <!-- Welcome section -->
-        <h1 class="welcome">WELCOME TO LADYCYCLE</h1>
+        <h1 class="welcome">WELCOME</h1>
 
         <!-- Start button below -->
         <a href="{% url 'track_period' %}" class="btn">Start</a>
     </div>
 </body>
 </html>
+
+

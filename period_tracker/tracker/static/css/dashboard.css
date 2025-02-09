@@ -1,60 +1,72 @@
-/* dashboard.css */
-
-/* Universal styles for the whole page */
+/* Full Page Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* Ensure the body takes full height */
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertically center content */
-    align-items: center; /* Horizontally center content */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #883779, #ff7eb3); /* Gradient background */
+    font-family: Arial, sans-serif;
 }
 
-/* Container for the content */
+/* Container Styling */
 .container {
-    max-width: 900px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Ensure it scales based on screen size */
-    max-width: 600px; /* Set a max width for larger screens */
-    text-align: center; /* Center text */
-}
-
-/* Styling for the image */
-.dashboard-image {
-    width: 100%; /* Make the image take full width of the container */
-    max-width: 300px; /* Set a maximum width */
-    height: auto; /* Maintain aspect ratio */
-    margin-bottom: 20px; /* Space below the image */
-}
-
-/* Welcome text styles */
-.welcome {
-    font-size: 36px;
-    color: pink;
-    margin-bottom: 40px; /* Space below the welcome text */
-}
-
-/* Button styles */
-a.btn {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: white;
     text-align: center;
-    padding: 10px 20px;
-    margin: 10px 0;
-    font-size: 18px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Image Styling */
+.welcome-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Heading Styling */
+.welcome {
+    font-size: 2.5rem;
+    color: #d63384;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Button Styling */
+.btn {
+    background-color: #d63384;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
     border-radius: 5px;
     text-decoration: none;
-    transition: background-color 0.3s;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: 2px solid #d63384;
 }
 
-a.btn:hover {
-    background-color: #45a049;
+/* Button Hover Effect */
+.btn:hover {
+    background-color: white;
+    color: #d63384;
+    transform: translateY(-3px);
+    border: 2px solid #d63384;
 }
+
+/* Container Hover Effect */
+.container:hover {
+    transform: scale(1.05);
+}
+
+/* Welcome Text Hover Effect */
+.welcome:hover {
+    color: #a12463;
+    transform: scale(1.05);
+}
+
+
 

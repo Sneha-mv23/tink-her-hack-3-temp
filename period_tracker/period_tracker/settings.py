@@ -121,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'your_app/static'),  # Change "your_app" to your actual app name
+    os.path.join(BASE_DIR, 'tracker/static'),  # Change "your_app" to your actual app name
 ]
 
 

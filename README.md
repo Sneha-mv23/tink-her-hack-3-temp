@@ -2,38 +2,42 @@
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: kunji
 
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: Akhila C S - Cochin University Of Science and Technology
+- Member 2: Sneha M V -  Cochin University Of Science and Technology
+
 
 ### Hosted Project Link
 [mention your project hosted project link here]
 
 ### Project Description
-[2-3 lines about what your project does]
+LADYCYCLE: Period Tracker & BMI Calculator
+
+LADYCYCLE helps women track their menstrual cycles and predict the next period based on the last period date and cycle length. It also features a BMI calculator to monitor your health by entering your height and weight.
+
+Stay organized and healthy with LADYCYCLE!
 
 ### The Problem statement
-[What ridiculous problem are you solving?]
+Many women struggle with tracking their menstrual cycle and predicting the start of their next period. Additionally, monitoring overall health, including BMI, is often overlooked. There's a need for a simple, reliable tool to track periods and provide health insights, like BMI, in one place.
 
 ### The Solution
-[How are you solving it? Keep it fun!]
+It predicts the next period date based on the user's cycle history. It also features a BMI calculator for health monitoring, offering an easy-to-use interface to manage menstrual and overall health
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+-Languages used: Python, HTML, CSS, JavaScript
+-Frameworks used: Django
+-Libraries used: 
+-Tools used: Visual Studio Code, Git, SQLite (or MySQL/PostgreSQL), Browser Developer Tools
 
 For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+- List main components:User's smartphone,computer,Database server
+- List specifications:Chrome,Minimum RAM,Internet speed
+- List tools required:Web Browser,Database management tools 
 
 ### Implementation
 For Software:
@@ -47,8 +51,7 @@ For Software:
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot1]
 
 ![Screenshot2](Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
