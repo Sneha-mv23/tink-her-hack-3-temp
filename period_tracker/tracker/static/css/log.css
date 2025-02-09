@@ -1,0 +1,102 @@
+/* Full Page Styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #ff7eb3, #ff758c); /* Soft gradient background */
+    font-family: Arial, sans-serif;
+}
+
+/* Container Styling */
+.container {
+    text-align: center;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Heading Styling */
+h1 {
+    font-size: 2rem;
+    color: #d63384;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #d63384;
+    outline: none;
+    box-shadow: 0 0 5px rgba(214, 51, 132, 0.5);
+}
+
+/* Button Styling */
+.btn {
+    background-color: #d63384;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: 2px solid #d63384;
+}
+
+/* Button Hover Effect */
+.btn:hover {
+    background-color: white;
+    color: #d63384;
+    transform: translateY(-3px);
+    border: 2px solid #d63384;
+}
+
+/* Period List Styling */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+ul li {
+    font-size: 1rem;
+    color: #333;
+    margin: 5px 0;
+}
+
+/* Link Styling */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #6f42c1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
